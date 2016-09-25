@@ -1,0 +1,128 @@
+<section>
+	<div class="well">
+		<h1>{{page.heading}}</h1>
+		<p>This is the homepage...</p>
+		<p class="text-muted"><em>1. Use ui-route to create at least 3 pages that share a single state for loading them.</em></p>
+		<p class="text-muted"><em>3. Page transitions.</em></p>
+	</div>
+	
+	<uib-accordion close-others="true">
+		<div uib-accordion-group class="panel-default" heading="2. Pass data from Home controller to About controller using service. ">
+			<div class="well">
+				<p> <div class="input-group">
+					<input type="text" class="form-control" ng-model="name" placeholder="Enter your name" />
+				</div></p>
+				<p class="text-danger" ng-show="nameRequired"> {{ nameRequired }} </p>
+				<p><button class="btn btn-success" ng-click="submitData(name)"> Submit </button></p>
+			</div>
+		</div>
+		<div uib-accordion-group class="panel-default" heading="4. Sorting and filtering an array using orderBy. ">
+			<p class="text-muted"><em>
+				Create an array of 50 items, each item having 3 properties. Create an option to sort the array by one or two properties. Make the array be filterable by a search input.
+			</em></p>
+			<div class="well">
+				<div class="container">
+					<h3> The list of Random Persons </h3>
+
+					<div class="row">
+						<div class="col-xs-4">
+							<p>
+							<div class="input-group">
+								<input type="text" class="search-query form-control" ng-model="searchModel" placeholder="Type to filter records..." />
+								<span class="input-group-btn">
+									<button class="btn btn-primary" type="button">
+										<span class=" glyphicon glyphicon-search"></span>
+									</button>
+								</span>
+							</div></p>
+						</div>
+						<div class="col-xs-4">
+							<p>
+							<div class="btn-group pull-right" uib-tooltip="Select to sort by Code name and/or Age">
+								<label class="btn btn-primary" ng-model="orderByModel.noOfCars" uib-btn-checkbox>#Cars</label>
+								<label class="btn btn-primary" ng-model="orderByModel.age" uib-btn-checkbox>Age</label>
+							</div>	</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-3"> <strong> Code Name </strong> </div>
+						<div class="col-xs-3"> <strong> Age </strong> </div>
+						<div class="col-xs-3"> <strong> #Cars </strong> </div>
+					</div>
+					<div class="row" ng-repeat="person in persons | filter:searchModel | orderBy: orderBy">
+						<div class="col-xs-3"> {{ person.codeName }} </div>
+						<div class="col-xs-3"> {{ person.age }} </div>
+						<div class="col-xs-3"> {{ person.noOfCars }} </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div uib-accordion-group class="panel-default" heading="5. Phone number input directive with dependency of ngModel.">
+			<p class="text-muted"><em>
+				Have a directive that is dependent of ngModel, that restricts the input to numbers only and auto formats the input as a phone number like (541) 754-3010. The field must change its format as user types. Do not create a $filter for this directive as that does not mean the directive itself is doing the format.
+			</em></p>
+			<div class="well">
+				<p> <div class="input-group">
+					<input type="text" class="form-control" size="25" ng-model="phoneNumber" phone-number placeholder="Enter your phone number" />
+				</div></p>
+			</div>
+		</div>
+		<div uib-accordion-group class="panel-default" heading="6. Currency input directive with dependency of ngModel. ">
+			<p class="text-muted"><em>
+				Have a directive that is dependent of ngModel, that restricts the input to numbers only and auto formats the input into currency, ex: $1,234. The field must change its format as user types. Do not create a $filter for this directive as that does not mean the directive itself is doing the format.
+			</em></p>
+			<div class="well">
+				<p> <div class="input-group">
+					<input type="text" class="form-control" ng-model="amount" currency placeholder="Enter amount" />
+				</div></p>
+			</div>
+		</div>
+		<div uib-accordion-group class="panel-default" heading="7. Sum of 3 number inputs into 4th input. ">
+			<p class="text-muted" style="white-space: pre;"><em> Create 3 number inputs that sum up into an additional field. Editing each of the 3 inputs will
+always update the sum value. The fourth field can also be editable, and whenever user changes
+this one its value must be spread across the other 3 fields. Example:
+Initial values:
+#1 = 100 #2 = 100 #3 = 100 #4 = 300
+User interacts with field #1:
+#1 = 200 #2 = 100 #3 = 100 #4 = 400
+User interacts with field #4 after editing #1:
+#1 = 150 #2 = 75 #3 = 75 #4 = 300 </em></p>
+			<div class="well">
+				<div class="row">
+					<div class="col-xs-3">
+						<p> <div class="input-group">
+							<input type="number" class="form-control" ng-model="seven.number1" ng-change="seven.total=seven.number1+seven.number2+seven.number3" placeholder="Enter number1" />
+						</div></p>
+					</div>
+					<div class="col-xs-3">
+						<p> <div class="input-group">
+							<input type="number" class="form-control" ng-model="seven.number2" ng-change="seven.total=seven.number1+seven.number2+seven.number3" placeholder="Enter number2" />
+						</div></p>
+					</div>
+					<div class="col-xs-3">
+						<p> <div class="input-group">
+							<input type="number" class="form-control" ng-model="seven.number3" ng-change="seven.total=seven.number1+seven.number2+seven.number3" placeholder="Enter number3" />
+						</div></p>
+					</div>
+					<div class="col-xs-3">
+						<p> <div class="input-group">
+							<input type="number" class="form-control" ng-model="seven.total" ng-change="totalChanged()" placeholder="Total" />
+						</div></p>	
+					</div>
+				</div>
+			</div>
+		</div>
+		<div uib-accordion-group class="panel-default" heading="8. 3 inputs with max char length 5 & auto change tabindex ">
+			<p class="text-muted"><em> Create 3 inputs each with maximum char. length 5. When entering the 5th char. in an input the cursor should jump to the next input right after the char. has been inserted. When deleting the 1st char. of an input the cursor should jump at the end of previous input right after that char. has been deleted.</em></p>
+			<div class="well">
+				<div class="row">
+					<input type="text" class="" id="custom-input-0" ng-model="eight.input0"/>
+					<input type="text" class="" id="custom-input-1" ng-model="eight.input1"/>
+					<input type="text" class="" id="custom-input-2" ng-model="eight.input2"/>
+				</div>
+			</div>
+		</div>
+		
+	</uib-accordion>
+	<p class="text-muted"><em> 9. Using RequireJS to load app resources.</em></p>
+</section>

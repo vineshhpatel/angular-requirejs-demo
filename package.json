@@ -1,0 +1,18 @@
+{
+  "name": "testapp",
+  "version": "1.0.0",
+  "description": "a test app using angular",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "AngularJS"
+  ],
+  "author": "Vinesh Patel",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
